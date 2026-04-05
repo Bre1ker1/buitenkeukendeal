@@ -1,0 +1,250 @@
+/* Player Card Styles (Glassmorphism + Neon) */
+.player-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.player-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.player-card:hover {
+    border-color: rgba(255, 70, 85, 0.5);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 70, 85, 0.2);
+    transform: translateY(-10px);
+}
+
+/* Image Wrapper and Image */
+.card-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    background: #000;
+}
+
+.player-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.5s ease;
+    filter: brightness(0.8) contrast(1.1);
+}
+
+.player-card:hover .player-img {
+    transform: scale(1.08);
+    /* Zoom effect on hover */
+    filter: brightness(1) contrast(1.1);
+}
+
+.card-image-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, var(--bg-dark), transparent);
+    z-index: 2;
+}
+
+/* Role Badges */
+.role-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.awper {
+    color: var(--role-awper);
+    border-color: var(--role-awper);
+}
+
+.igl {
+    color: var(--role-igl);
+    border-color: var(--role-igl);
+}
+
+.entry {
+    color: var(--role-entry);
+    border-color: var(--role-entry);
+}
+
+.lurker {
+    color: var(--role-lurker);
+    border-color: var(--role-lurker);
+}
+
+.support {
+    color: var(--role-support);
+    border-color: var(--role-support);
+}
+
+/* Card Content / Typography */
+.card-content {
+    padding: 1.5rem;
+    position: relative;
+    z-index: 3;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.player-name {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 0.2rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.player-realname {
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 400;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.player-desc {
+    font-size: 0.95rem;
+    color: var(--text-sub);
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-sub);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--card-border);
+    margin-top: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .roster-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .logo {
+        font-size: 3rem;
+    }
+}
+
+/* --- SENIOR FEATURES --- */
+/* Entry Animations */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.player-card {
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+/* Hover Stats Overlay */
+.player-stats {
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    z-index: 4;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+.player-card:hover .player-stats {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+}
+
+.stat-value {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Social Links */
+.social-links {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1rem;
+}
+
+.social-links a {
+    color: var(--text-sub);
+    font-size: 1.2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+}
