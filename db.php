@@ -1,6 +1,6 @@
 <?php
-$host = 'yamanote.proxy.rlwy.net:38546'; // Ejemplo: monorail.proxy.rlwy.net
-$port = '3306'; // El número que dice en MYSQLPORT
+$host = 'yamanote.proxy.rlwy.net'; // Ejemplo: monorail.proxy.rlwy.net
+$port = '38546'; // El número que dice en MYSQLPORT
 $dbname = 'railway';
 $user = 'root';
 $pass = 'eZtcAkGetBDQfcXURXdOKPrFIQBzUWZg';
