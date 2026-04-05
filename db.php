@@ -1,12 +1,14 @@
 <?php
-// db.php
-$host = 'localhost';
-$db   = 'aeterna_db';
+$host = 'yamanote.proxy.rlwy.net:38546'; // Ejemplo: monorail.proxy.rlwy.net
+$port = '3306'; // El número que dice en MYSQLPORT
+$dbname = 'railway';
 $user = 'root';
-$pass = '';
+$pass = 'eZtcAkGetBDQfcXURXdOKPrFIQBzUWZg';
 $charset = 'utf8mb4';
 
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+// Agregamos el puerto a la cadena de conexión
+$dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=$charset";
+
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -15,8 +17,7 @@ $options = [
 
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
+    // Si querés saber si conectó, podés poner: echo "¡Conectado!";
 } catch (\PDOException $e) {
-    die("<b>Error de conexión a la Base de Datos.</b> Es probable que no hayas ejecutado <a href='setup.php'>setup.php</a> todavía.");
+    $db_error = $e->getMessage();
 }
-?>
-
